@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            position: relative;
+            overflow: hidden;
+            background-color: #222831; 
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .container h2 {
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .container {
+            width: 50vw;
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            margin-left: 25vw;
+            margin-top: 25vh;
+            padding: 6px;
+            border: none;
+            background-color: #00ADB5;
+            box-shadow: 10px 10px black;
+            border-radius: 23px;
+        }
+        
+        .container *{
+            color: #EEEEEE;
+        }
+        #expression,
+        #result {
+            height: 3rem;
+            display: block;
+            color: black;
+            font-weight: 700;
+            border-radius: 23px;
+        }
+        
+        #result {
+          margin-bottom: 1rem;
+        }
+        #expression{
+            margin-top: 1rem;
+        }
+
+        .button-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .button-container .box {
+            width: 80%;
+            height: 60%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+
+        .box .number,
+        #calculate {
+            margin: 0 10%;
+            cursor: pointer;
+            width: 3rem;
+            height: 2rem;
+        }
+        
+        button{
+            background-color: #393E46;
+            font-size: 1rem;
+        }
+        footer {
+            width: 100%;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20vh;
+            background-color: #00ADB5;
+            color: #EEEEEE;
+            font-size: 1.4rem;
+        }
+
+    </style>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>My simple Calculator</h2>
+        <input type="text" id="expression" placeholder="  Enter here">
+        <div class="button-container">
+            <div class="box">
+                <button class="number number1">1</button>
+                <button class="number number4">4</button>
+                <button class="number number7">7</button>
+                <button class="number numberDecimal">.</button>
+            </div>
+            <div class="box">
+                <button class="number number2">2</button>
+                <button class="number number5">5</button>
+                <button class="number number8">8</button>
+                <button class="number numberDiv">/</button>
+            </div>
+            <div class="box">
+                <button class="number number3">3</button>
+                <button class="number number6">6</button>
+                <button class="number number9">9</button>
+                <button class="number numberMul">*</button>
+            </div>
+            <div class="box">
+                <button class="number numberPlus">+</button>
+                <button class="number numberMin">-</button>
+                <button class="number numberClear">C</button>
+                <button id="calculate">=</button>
+            </div>
+        </div>
+        <input type="text" placeholder="  Result" id="result">
+
+    </div>
+    <footer>
+        <p>&copy; Made By Vishvender Tyagi</p>
+    </footer>
+    <script>
+        var string = "";
+        var audio = new Audio("click_sound.mp3")
+        function eventAddCrow(num) {
+            var btn = document.querySelector(".number" + num);
+            btn.addEventListener("click", () => {
+                string += (btn.innerHTML);
+                document.getElementById("expression").value = string;
+                audio.play();
+            })
+        }
+
+        for (var i = 1; i <= 9; i++) {
+            eventAddCrow(i);
+        }
+
+        eventAddCrow("Plus");
+        eventAddCrow("Min");
+        eventAddCrow("Div");
+        eventAddCrow("Mul");
+        eventAddCrow("Decimal");
+
+        document.querySelector(".numberClear").addEventListener("click", () => {
+            string = "";
+            document.getElementById("expression").value = string;
+            audio.play();
+        })
+
+        document.getElementById("calculate").addEventListener("click", () => {
+            // document.querySelector("[placeholder=Result]").value = eval(string);
+            document.getElementById("result").value = eval(string);
+            audio.play();
+        })
+
+        // console.log(btn.innerHTML);
+        //  var expression = document.getElementById("expression").value;
+        // for(var i = 0 ; i< 16 ; i++){
+        //     var button  = document.querySelectorAll(".number")[i];
+        //     button.addEventListener("click", ()=>{
+        //         console.log("clicked.")
+        //         // expression += button.innerHTML;
+        //         // document.getElementById("expression").innerText = expression;
+        //     });
+        // }
+
+        document.getElementById("calculate").addEventListener("click", () => {
+            var expression = document.getElementById("expression").value;
+        }
+        );
+    </script>
+</body>
+
+</html>
